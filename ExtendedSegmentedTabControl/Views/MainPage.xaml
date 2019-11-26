@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:control="clr-namespace:ExtendedSegmentedTabControl.Controls"
+             mc:Ignorable="d"
+             x:Class="ExtendedSegmentedTabControl.MainPage">
+    <StackLayout Padding="0,50,0,0">
+        <control:SegmentedControl  x:Name="segment"
+                                    BackgroundColor="White"
+                                    ItemsSource="{Binding TabOptions}"
+                                    SelectionIndicator="IsSelected">
+                            <control:SegmentedControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout VerticalOptions="FillAndExpand" 
+                                                 HorizontalOptions="FillAndExpand"
+                                                 Spacing="5">
+                                      
+                                            <Label Margin="20,10" 
+                                                   Text="{Binding Name}" 
+                                                   TextColor="Gray"
+                                                   HorizontalOptions="CenterAndExpand">
+                                                <Label.Triggers>
+                                                    <DataTrigger TargetType="Label"
+                                                                        Binding="{Binding IsSelected}"
+                                                                        Value="True">
+                                                        <Setter Property="FontAttributes" Value="Bold" />
+                                                         <Setter Property="TextColor" Value="Blue" />
+                                                    </DataTrigger>
+                                                </Label.Triggers>
+                                            </Label>
+
+                                    <BoxView HeightRequest="5" 
+                                             BackgroundColor="Blue"
+                                             HorizontalOptions="FillAndExpand">
+                                        <BoxView.Triggers>
+                                            <DataTrigger TargetType="BoxView"
+                                                            Binding="{Binding IsSelected}"
+                                                            Value="False">
+                                                <Setter Property="BackgroundColor" Value="Transparent" />
+                                            </DataTrigger>
+                                        </BoxView.Triggers>
+                                    </BoxView>
+                                </StackLayout>
+                            </DataTemplate>
+                        </control:SegmentedControl.ItemTemplate>
+        </control:SegmentedControl>
+
+        <Label Text="{Binding Path=ItemSelected.Name, Source={x:Reference segment}}"
+               HorizontalOptions="Center"
+               VerticalOptions="CenterAndExpand" />
+    </StackLayout>
+</ContentPage>
