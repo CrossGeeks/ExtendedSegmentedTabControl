@@ -6,4 +6,4 @@
 </p>
 
 
-Blog post: http://www.xamboy.com
+Blog post: http://www.xamboy.com/2019/11/27/extended-segmented-tab-control-for-xamarin-forms/
